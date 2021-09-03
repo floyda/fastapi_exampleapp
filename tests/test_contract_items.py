@@ -13,6 +13,7 @@ def resource_mock_items(mocker):
     return {}
 
 
-def test_get_all_items(resource_mock_items):
-    response = client.get("/items")
+def test_get_all_todos(resource_mock_items):
+    response = client.get("/todos")
+    # response.
     assert response.status_code == 200

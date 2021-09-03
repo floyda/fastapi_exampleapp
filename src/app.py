@@ -1,17 +1,23 @@
+from typing import List
+
 from fastapi import FastAPI
 
+from todo_app import TodoApp, TodoNote
+
 api = FastAPI(
-    title="Example Project",
-    description="Template project for developing FastAPI project",
+    title="TODO",
+    description="Simple Todo project",
     version="0.0.1"
 )
 
-
-@api.get("/items")
-async def read_items():
-    return {"items": ["item1", "item2"]}
+app = TodoApp()
 
 
-@api.get("/items/{item_id}")
-async def read_item(item_id):
-    return {"item_id": item_id}
+@api.get("/todos")
+async def get_all_todos() -> List[TodoNote]:
+    return app.get_all()
+
+
+@api.get("/todo/{todo_id}")
+async def read_item(todo_id):
+    return {"item_id": todo_id}
